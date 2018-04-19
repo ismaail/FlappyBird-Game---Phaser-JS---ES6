@@ -8,6 +8,9 @@ import GameState from './states/Game';
 
 import config from './config';
 
+/**
+ * Class Game
+ */
 class Game extends Phaser.Game {
     constructor() {
         const docElement = document.documentElement;
