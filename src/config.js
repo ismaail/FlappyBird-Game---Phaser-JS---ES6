@@ -1,6 +1,7 @@
 export default {
-    gameWidth: 760,
-    gameHeight: 400,
+    bgColor: '#70C5CF',
+    gameWidth: 320,
+    gameHeight: 480,
     localStorageName: 'phaseres6webpack',
     webfonts: ['Bangers'],
 };

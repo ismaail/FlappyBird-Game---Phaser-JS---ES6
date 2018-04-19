@@ -1,6 +1,6 @@
 /* globals __DEV__ */
 import Phaser from 'phaser';
-import Mushroom from '../sprites/Mushroom';
+import Backround from '../sprites/Backround';
 
 export default class extends Phaser.State {
     init() {
@@ -10,29 +10,43 @@ export default class extends Phaser.State {
     }
 
     create() {
-        const bannerText = 'Phaser + ES6 + Webpack';
-        let banner = this.add.text(this.world.centerX, this.game.height - 80, bannerText, {
-            font: '40px Bangers',
-            fill: '#77BFA3',
-            smoothed: false,
-        });
+        this.addBackground();
+        this.addBase();
+    }
 
-        banner.padding.set(10, 16);
-        banner.anchor.setTo(0.5);
-
-        this.mushroom = new Mushroom({
+    addBackground() {
+        this.backgroundDay = new Backround({
             game: this.game,
-            x: this.world.centerX,
-            y: this.world.centerY,
-            asset: 'mushroom',
+            x:0,
+            y: -1 * (this.game.cache.getImage('base').height + 32),
+            width: this.game.width,
+            height: this.game.cache.getImage('background-day').height,
+            asset: 'background-day',
         });
 
-        this.game.add.existing(this.mushroom);
+        this.backgroundDay.setSpeed(0.10);
+
+        this.game.add.existing(this.backgroundDay);
+    }
+
+    addBase() {
+        this.base = new Backround({
+            game: this.game,
+            x: 0,
+            y: this.game.height - this.game.cache.getImage('base').height,
+            width: this.game.width,
+            height: this.game.cache.getImage('base').height,
+            asset: 'base',
+        });
+
+        this.base.setSpeed(1);
+
+        this.game.add.existing(this.base);
     }
 
     render() {
         if (__DEV__) {
-            this.game.debug.spriteInfo(this.mushroom, 32, 32);
+            // this.game.debug.spriteInfo(this.mushroom, 32, 32);
         }
     }
 }
