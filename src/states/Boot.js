@@ -1,5 +1,4 @@
 import Phaser from 'phaser';
-import WebFont from 'webfontloader';
 import config from '../config';
 
 /**
@@ -8,28 +7,19 @@ import config from '../config';
 export default class extends Phaser.State {
     init() {
         this.stage.backgroundColor = config.bgColor;
-        this.fontsReady = false;
-        this.fontsLoaded = this.fontsLoaded.bind(this);
     }
 
     preload() {
-        if (config.webfonts.length) {
-            WebFont.load({
-                google: {
-                    families: config.webfonts,
-                },
-                active: this.fontsLoaded,
-            });
-        }
-
         this.drawLoadingText();
-
         this.loadImages();
     }
 
+    /**
+     * Draw 'Loading...' text
+     */
     drawLoadingText() {
-        let text = this.add.text(this.world.centerX, this.world.centerY, 'loading...', {
-            font: '16px Arial',
+        let text = this.add.text(this.world.centerX, this.world.centerY, 'Loading...', {
+            font: '18px Courier',
             fill: '#fff',
             align: 'center',
         });
@@ -37,22 +27,15 @@ export default class extends Phaser.State {
         text.anchor.setTo(0.5, 0.5);
     }
 
+    /**
+     * Load Loader image assets
+     */
     loadImages() {
         this.load.image('loaderBg', './assets/images/loader-bg.png');
         this.load.image('loaderBar', './assets/images/loader-bar.png');
     }
 
     render() {
-        if (config.webfonts.length && this.fontsReady) {
-            this.state.start('Splash');
-        }
-
-        if (! config.webfonts.length) {
-            this.state.start('Splash');
-        }
-    }
-
-    fontsLoaded() {
-        this.fontsReady = true;
+        this.state.start('Splash');
     }
 }
