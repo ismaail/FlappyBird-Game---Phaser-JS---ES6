@@ -54,9 +54,9 @@ export default class extends Phaser.State {
     addBird() {
         this.bird = new Bird({
             game: this.game,
-            x: 50,
-            y: 50,
-            asset: 'bird_yellow'
+            x: this.game.width/2 - 50,
+            y: this.game.width/2 - 100,
+            asset: 'bird_yellow',
         });
 
         this.game.add.existing(this.bird);
