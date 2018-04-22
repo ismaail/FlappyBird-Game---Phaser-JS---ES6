@@ -1,17 +1,17 @@
 /* globals __DEV__ */
 import Phaser from 'phaser';
 import Backround from '../sprites/Backround';
+import Bird from '../sprites/Bird';
 
 export default class extends Phaser.State {
-    init() {
-    }
-
-    preload() {
-    }
-
     create() {
         this.addBackground();
         this.addBase();
+        this.addBird();
+
+        // Enable Physics
+        this.game.physics.startSystem(Phaser.Physics.ARCADE);
+        this.game.physics.arcade.enable([this.base, this.bird], Phaser.Physics.ARCADE);
     }
 
     addBackground() {
@@ -44,9 +44,26 @@ export default class extends Phaser.State {
         this.game.add.existing(this.base);
     }
 
+    addBird() {
+        this.bird = new Bird({
+            game: this.game,
+            x: 50,
+            y: 50,
+            asset: 'bird_yellow'
+        });
+
+        this.game.add.existing(this.bird);
+    }
+
+    update() {
+        this.game.physics.arcade.overlap(this.base, this.bird, (base, bird) => {
+            this.state.start('GameOver');
+        });
+    }
+
     render() {
         if (__DEV__) {
-            // this.game.debug.spriteInfo(this.mushroom, 32, 32);
+            this.game.debug.spriteInfo(this.bird, 5, 15);
         }
     }
 }
