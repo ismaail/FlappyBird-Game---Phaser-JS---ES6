@@ -13,10 +13,11 @@ export default class extends Phaser.State {
         this.load.image('background-day', 'assets/images/sprites/background-day.png');
         this.load.image('base', 'assets/images/sprites/base.png');
         this.load.image('gameover', 'assets/images/sprites/gameover.png');
+        this.load.image('main_menu', 'assets/images/sprites/main_menu.png');
         this.load.spritesheet('bird_yellow', 'assets/images/sprites/yellowbird.png', 36, 26);
     }
 
     create() {
-        this.state.start('Game');
+        this.state.start('MainMenu');
     }
 }
