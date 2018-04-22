@@ -1,12 +1,17 @@
 /* globals __DEV__ */
 import Phaser from 'phaser';
-import Backround from '../sprites/Backround';
 import Bird from '../sprites/Bird';
+import Backround from '../sprites/Backround';
 
+/**
+ * Game Class
+ */
 export default class extends Phaser.State {
+    /**
+     * State Create
+     */
     create() {
-        this.addBackground();
-        this.addBase();
+        this.addBackgrounds();
         this.addBird();
 
         // Enable Physics
@@ -14,7 +19,10 @@ export default class extends Phaser.State {
         this.game.physics.arcade.enable([this.base, this.bird], Phaser.Physics.ARCADE);
     }
 
-    addBackground() {
+    /**
+     * Add Backgrounds
+     */
+    addBackgrounds() {
         this.backgroundDay = new Backround({
             game: this.game,
             x:0,
@@ -24,12 +32,6 @@ export default class extends Phaser.State {
             asset: 'background-day',
         });
 
-        this.backgroundDay.setSpeed(0.10);
-
-        this.game.add.existing(this.backgroundDay);
-    }
-
-    addBase() {
         this.base = new Backround({
             game: this.game,
             x: 0,
@@ -39,11 +41,16 @@ export default class extends Phaser.State {
             asset: 'base',
         });
 
+        this.backgroundDay.setSpeed(0.10);
         this.base.setSpeed(1);
 
+        this.game.add.existing(this.backgroundDay);
         this.game.add.existing(this.base);
     }
 
+    /**
+     * Add the Bird
+     */
     addBird() {
         this.bird = new Bird({
             game: this.game,
@@ -55,12 +62,18 @@ export default class extends Phaser.State {
         this.game.add.existing(this.bird);
     }
 
+    /**
+     * State Update
+     */
     update() {
         this.game.physics.arcade.overlap(this.base, this.bird, (base, bird) => {
             this.state.start('GameOver');
         });
     }
 
+    /**
+     * State Render
+     */
     render() {
         if (__DEV__) {
             this.game.debug.spriteInfo(this.bird, 5, 15);

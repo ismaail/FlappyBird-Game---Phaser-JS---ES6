@@ -7,7 +7,7 @@ export default class extends Phaser.Sprite {
     /**
      * Class Constructor
      *
-     * @param {Game} game
+     * @param {Phaser.Game} game
      * @param {number} x
      * @param {number} y
      * @param {string} asset
