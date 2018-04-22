@@ -1,23 +1,17 @@
 import Phaser from 'phaser';
-import {centerGameObjects} from '../utils';
 
+/**
+ * MainMenu Class
+ */
 export default class extends Phaser.State {
-    preload() {
-        this.loaderBg = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'loaderBg');
-        this.loaderBar = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'loaderBar');
-        centerGameObjects([this.loaderBg, this.loaderBar]);
-
-        this.load.setPreloadSprite(this.loaderBar);
-
-        /** Load your assets */
-        this.load.image('background-day', 'assets/images/sprites/background-day.png');
-        this.load.image('base', 'assets/images/sprites/base.png');
-        this.load.image('gameover', 'assets/images/sprites/gameover.png');
-        this.load.image('main_menu', 'assets/images/sprites/main_menu.png');
-        this.load.spritesheet('bird_yellow', 'assets/images/sprites/yellowbird.png', 36, 26);
-    }
-
+    /**
+     * State Create
+     */
     create() {
-        this.state.start('MainMenu');
+        let image = this.game.add.image(this.game.width/2, this.game.height/2, 'main_menu');
+        image.anchor.setTo(0.5, 0.5);
+        this.game.add.existing(image);
+
+        this.input.onTap.addOnce(() => this.game.state.start('Game'));
     }
 }

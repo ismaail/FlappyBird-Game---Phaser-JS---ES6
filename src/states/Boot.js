@@ -11,7 +11,7 @@ export default class extends Phaser.State {
 
     preload() {
         this.drawLoadingText();
-        this.loadImages();
+        this.loadAssets();
     }
 
     /**
@@ -28,13 +28,20 @@ export default class extends Phaser.State {
     }
 
     /**
-     * Load Loader image assets
+     * Load Game Assets
      */
-    loadImages() {
-        this.load.image('loaderBg', './assets/images/loader-bg.png');
-        this.load.image('loaderBar', './assets/images/loader-bar.png');
+    loadAssets() {
+        /** Load your assets */
+        this.load.image('background-day', 'assets/images/sprites/background-day.png');
+        this.load.image('base', 'assets/images/sprites/base.png');
+        this.load.image('gameover', 'assets/images/sprites/gameover.png');
+        this.load.image('main_menu', 'assets/images/sprites/main_menu.png');
+        this.load.spritesheet('bird_yellow', 'assets/images/sprites/yellowbird.png', 36, 26);
     }
 
+    /**
+     * State Render
+     */
     render() {
         this.state.start('Splash');
     }

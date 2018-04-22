@@ -12,6 +12,6 @@ export default class extends Phaser.State {
         image.anchor.setTo(0.5, 0.5);
         this.game.add.existing(image);
 
-        this.input.onTap.addOnce(() => this.game.state.start('MainMenu'));
+        this.input.onTap.addOnce(() => this.game.state.start('Splash'));
     }
 }
