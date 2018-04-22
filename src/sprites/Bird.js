@@ -43,7 +43,7 @@ export default class extends Phaser.Sprite {
     }
 
     /**
-     * State Update
+     * Sprite Update
      */
     update() {
         this.velocity += this.gravity;

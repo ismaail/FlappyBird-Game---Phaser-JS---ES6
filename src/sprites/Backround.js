@@ -1,5 +1,8 @@
 import Phaser from 'phaser';
 
+/**
+ * Background Class
+ */
 export default class extends Phaser.TileSprite {
     /**
      * @param {Phaser.Game} game
@@ -25,6 +28,9 @@ export default class extends Phaser.TileSprite {
         this.speed = speed;
     }
 
+    /**
+     * Sprite Update
+     */
     update() {
         this.tilePosition.x -= this.speed;
     }

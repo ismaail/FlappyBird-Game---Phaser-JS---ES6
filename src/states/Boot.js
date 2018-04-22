@@ -5,10 +5,16 @@ import config from '../config';
  * Boot State
  */
 export default class extends Phaser.State {
+    /**
+     * State Init
+     */
     init() {
         this.stage.backgroundColor = config.bgColor;
     }
 
+    /**
+     * State Preload
+     */
     preload() {
         this.drawLoadingText();
         this.loadAssets();
@@ -31,7 +37,6 @@ export default class extends Phaser.State {
      * Load Game Assets
      */
     loadAssets() {
-        /** Load your assets */
         this.load.image('background-day', 'assets/images/sprites/background-day.png');
         this.load.image('base', 'assets/images/sprites/base.png');
         this.load.image('gameover', 'assets/images/sprites/gameover.png');
