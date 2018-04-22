@@ -42,6 +42,8 @@ export default class extends Phaser.State {
         this.load.image('gameover', 'assets/images/sprites/gameover.png');
         this.load.image('main_menu', 'assets/images/sprites/main_menu.png');
         this.load.spritesheet('bird_yellow', 'assets/images/sprites/yellowbird.png', 36, 26);
+
+        game.load.audio('hit', ['assets/audio/hit.ogg']);
     }
 
     /**

@@ -17,6 +17,10 @@ export default class extends Phaser.State {
         // Enable Physics
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.game.physics.arcade.enable([this.base, this.bird], Phaser.Physics.ARCADE);
+
+        // Audio
+        this.audio = {};
+        this.audio.hit = this.game.add.audio('hit');
     }
 
     /**
@@ -67,6 +71,7 @@ export default class extends Phaser.State {
      */
     update() {
         this.game.physics.arcade.overlap(this.base, this.bird, (base, bird) => {
+            this.audio.hit.play();
             this.state.start('GameOver');
         });
     }
