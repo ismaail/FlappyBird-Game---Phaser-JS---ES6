@@ -1,2 +1,9 @@
 # Flappy Bird Game
-#### game made with [Phaser JS](https://phaser.io/)
+
+#### Game made with [Phaser JS](https://phaser.io/)
+
+![FlapyBird](https://upload.wikimedia.org/wikipedia/en/0/0a/Flappy_Bird_icon.png)
+
+<br>
+
+Made with :hearts: by [@ismaail](https://github.com/ismaail/)
