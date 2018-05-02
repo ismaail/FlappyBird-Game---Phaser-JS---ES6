@@ -19,8 +19,8 @@ export default class extends Phaser.Sprite {
 
         this.velocity = 0;
         this.rotation = 0;
-        this.gravity = 0.25;
-        this._jump = 4.6;
+        this.gravity = 15;
+        this._jump = 300;
 
         game.input.onTap.add(() => this.jump());
 
@@ -39,17 +39,16 @@ export default class extends Phaser.Sprite {
      * Makes the bird "flap" and jump
      */
     jump() {
-        this.velocity = -this._jump;
+        this.body.velocity.y = -this._jump;
     }
 
     /**
      * Sprite Update
      */
     update() {
-        this.velocity += this.gravity;
-        this.y += this.velocity;
+        this.body.velocity.y += this.gravity;
 
-        if (this.velocity >= this._jump) {
+        if (this.body.velocity.y >= this._jump) {
             this.rotation = Math.min(Math.PI/2, this.rotation + 0.3);
         } else {
             this.rotation = -0.3;
