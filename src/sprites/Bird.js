@@ -21,6 +21,7 @@ export default class extends Phaser.Sprite {
         this.rotation = 0;
         this.gravity = 15;
         this._jump = 300;
+        this.ceil = (this.height / 2) + 4;
 
         game.input.onTap.add(() => this.jump());
 
@@ -55,8 +56,8 @@ export default class extends Phaser.Sprite {
         }
 
         // Prevent from going up out of the screen
-        if (this.y <= this.height / 2) {
-            this.y = this.height / 2;
+        if (this.y <= this.ceil) {
+            this.y = this.ceil;
         }
     }
 }
