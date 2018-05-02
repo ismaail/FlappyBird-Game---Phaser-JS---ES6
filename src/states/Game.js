@@ -70,7 +70,7 @@ export default class extends Phaser.State {
      * State Update
      */
     update() {
-        this.game.physics.arcade.overlap(this.base, this.bird, (base, bird) => {
+        this.game.physics.arcade.collide(this.base, this.bird, (base, bird) => {
             this.audio.hit.play();
             this.state.start('GameOver');
         });
